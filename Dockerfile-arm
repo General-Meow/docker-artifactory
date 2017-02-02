@@ -13,7 +13,7 @@ EXPOSE 8081
 #RUN ["adduser", "-s", "/bin/bash", "-S", "artifactory"]
 RUN ["mkdir", "-p", "/opt/artifactory"]
 ADD ./artifactory-oss-5.0.0 /opt/artifactory
-RUN ["/opt/artifactory/bin/installService.sh"]
+#RUN ["/opt/artifactory/bin/installService.sh"]
 COPY ["./files/etc/opt/jfrog/artifactory/default", "/etc/opt/jfrog/artifactory/default"]
 VOLUME ["/opt/artifactory/data/filestore", "/opt/artifactory/logs", "/opt/artifactory/backup"]
 ENTRYPOINT ["/opt/artifactory/bin/artifactory.sh"]
