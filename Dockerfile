@@ -9,7 +9,6 @@ MAINTAINER Paul Hoang 2017-01-31
 EXPOSE 8081
 RUN ["mkdir", "-p", "/opt/artifactory"]
 ADD ./artifactory-oss-5.0.0 /opt/artifactory
-RUN ["/opt/artifactory/bin/installService.sh"]
 COPY ["./files/etc/opt/jfrog/artifactory/default", "/etc/opt/jfrog/artifactory/default"]
 VOLUME ["/opt/artifactory/data/filestore", "/opt/artifactory/logs", "/opt/artifactory/backup"]
 ENTRYPOINT ["/opt/artifactory/bin/artifactory.sh"]

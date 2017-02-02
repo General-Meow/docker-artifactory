@@ -4,16 +4,14 @@
 # tar -zxvf ./artifactory-oss.5.0.0.tar.gz -C .
 # build: docker build -t generalmeow/artifactory:5.0.0-arm .
 # run: docker run -ti -p 8081:8081 -v <FILESTORE>:/opt/artifactory/data/filestore -v <LOGS>:/opt/artifactory/logs -v <BACKUP>:/opt/artifactory/backup generalmeow/artifactory:5.0.0-arm
-FROM hypriot/rpi-alpine-scratch
+FROM larmog/armhf-alpine-java:jdk-8u73
 RUN apk update && \
 apk upgrade && \
 apk add bash
 MAINTAINER Paul Hoang 2017-01-31
 EXPOSE 8081
-#RUN ["adduser", "-s", "/bin/bash", "-S", "artifactory"]
 RUN ["mkdir", "-p", "/opt/artifactory"]
 ADD ./artifactory-oss-5.0.0 /opt/artifactory
-#RUN ["/opt/artifactory/bin/installService.sh"]
 COPY ["./files/etc/opt/jfrog/artifactory/default", "/etc/opt/jfrog/artifactory/default"]
 VOLUME ["/opt/artifactory/data/filestore", "/opt/artifactory/logs", "/opt/artifactory/backup"]
 ENTRYPOINT ["/opt/artifactory/bin/artifactory.sh"]
