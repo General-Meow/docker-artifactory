@@ -3,7 +3,7 @@
 # cat ./artifactory/artifactory-oss-5.0.0.tar.gz.a* > ./artifactory-oss.5.0.0.tar.gz
 # tar -zxvf ./artifactory-oss.5.0.0.tar.gz -C .
 # build: docker build -t generalmeow/artifactory:5.0.0 .
-# run: docker run -ti -p 8081:8081 -v <FILESTORE>:/opt/artifactory/data/filestore -v <LOGS>:/opt/artifactory/logs -v <BACKUP>:/opt/artifactory/backup generalmeow/artifactory:5.0.0
+# run:  docker run -d --network host --restart always --name artifactory -p 8081:8081 -v <FILESTORE>:/opt/artifactory/data/filestore -v <LOGS>:/opt/artifactory/logs -v <BACKUP>:/opt/artifactory/backup generalmeow/artifactory:5.0.0
 FROM java:8-jre
 MAINTAINER Paul Hoang 2017-01-31
 EXPOSE 8081
